@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>IoT Sensor System | Data Sensor</title>
+  <link rel="stylesheet" href="../css/common.css?v=20261007-3">
+  <link rel="stylesheet" href="../css/data.css?v=20261007-3">
+</head>
+<body data-page="data">
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="app-logo" href="dashboard.html">IoT Tuan Le Quoc <span aria-hidden="true">⌂</span></a>
+      <nav class="nav-menu">
+        <a href="dashboard.html">Dashboard</a>
+        <a class="active" href="data.html">Data</a>
+        <a href="history.html">History</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+      <button id="logoutBtn" class="logout-outline sidebar-logout" type="button">Đăng xuất</button>
+    </header>
+
+    <main class="page-main">
+      <section class="panel filter-panel">
+        <form id="dataFilterForm" class="filter-form">
+          <label>
+            <span>Search Keyword</span>
+            <input name="keyword" type="text" placeholder="⌕  Search sensor, value or time">
+          </label>
+          <label>
+            <span>Search By</span>
+            <select name="sensorType">
+              <option value="">All Types</option>
+              <option value="time">Time</option>
+              <option value="Temperature">Temperature</option>
+              <option value="Humidity">Humidity</option>
+              <option value="Luminosity">Luminosity</option>
+            </select>
+          </label>
+          <button class="primary-btn search-btn" type="submit">Search</button>
+          <button id="resetDataBtn" class="reset-btn" type="button">Reset</button>
+        </form>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="table-title-row">
+          <div><span class="live-dot"></span>LIVE STREAMING</div>
+          <p id="resultSummary" class="summary-pill">0 bản ghi</p>
+          <span class="sort-icon">↕</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Mã cảm biến</th>
+                <th>Loại cảm biến</th>
+                <th>Giá trị</th>
+                <th>Thời gian</th>
+              </tr>
+            </thead>
+            <tbody id="dataRows"></tbody>
+          </table>
+        </div>
+        <div id="dataPagination" class="pagination"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../js/config.js?v=20261007-3"></script>
+  <script src="../js/common.js?v=20261007-4"></script>
+  <script src="../js/data.js?v=20261007-5"></script>
+</body>
+</html>

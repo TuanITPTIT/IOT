@@ -1,0 +1,12 @@
+# macOS system files
+.DS_Store
+
+# Backend builds & IDE configs
+backend/target/
+backend/.idea/
+backend/*.iml
+
+# Frontend builds & dependencies
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/

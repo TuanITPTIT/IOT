@@ -1,0 +1,119 @@
+.login-page {
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.9), transparent 32%),
+    #f4f6fb;
+}
+
+.login-shell {
+  width: min(470px, 100%);
+  min-height: 560px;
+  display: grid;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #dce2ea;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(28, 39, 57, 0.1);
+}
+
+.login-panel {
+  padding: 46px 36px;
+}
+
+.brand-mark {
+  display: none;
+}
+
+.login-panel h1 {
+  margin: 0 0 14px;
+  color: #172033;
+  font-size: 28px;
+  text-align: center;
+}
+
+.login-panel > .muted {
+  margin: 0 0 34px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.login-form {
+  display: grid;
+  gap: 20px;
+}
+
+.login-form input {
+  min-height: 50px;
+  font-size: 16px;
+  background: #fbfcfe;
+}
+
+.login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  color: #59687d;
+  font-size: 14px;
+}
+
+.login-options a,
+.signup-text a {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.remember-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.remember-row input {
+  width: 18px;
+  min-height: 18px;
+}
+
+.remember-row span {
+  color: #59687d;
+  font-weight: 400;
+}
+
+.login-form .primary-btn {
+  min-height: 50px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.signup-text {
+  margin: 4px 0 0;
+  color: #6c7b91;
+  text-align: center;
+}
+
+.form-message {
+  min-height: 22px;
+  margin: 0;
+  color: var(--danger);
+  font-weight: 700;
+  text-align: center;
+}
+
+.login-visual,
+.signal-card,
+.sensor-grid,
+.device-strip {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .login-page {
+    padding: 12px;
+  }
+
+  .login-panel {
+    padding: 32px 22px;
+  }
+}

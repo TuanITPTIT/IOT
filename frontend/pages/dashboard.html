@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Sensor System | Dashboard</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/dashboard.css?v=20261007-6">
+  <style>
+    body[data-page="dashboard"] .metric-card,
+    body[data-page="dashboard"] .metric-card.temp,
+    body[data-page="dashboard"] .metric-card.light,
+    body[data-page="dashboard"] .metric-card.humidity {
+      color: var(--text) !important;
+      background: #ffffff !important;
+      border: 1px solid var(--line) !important;
+      box-shadow: 0 1px 2px rgba(21, 35, 51, 0.04), 0 18px 42px rgba(21, 35, 51, 0.06) !important;
+    }
+
+    body[data-page="dashboard"] .metric-card small,
+    body[data-page="dashboard"] .metric-card strong {
+      color: #172033 !important;
+      text-shadow: none !important;
+    }
+
+    body[data-page="dashboard"] .metric-card.temp::after {
+      background: var(--metric-dot-color, #f04d3a) !important;
+    }
+
+    body[data-page="dashboard"] .metric-card.light::after {
+      background: var(--metric-dot-color, #d9a514) !important;
+    }
+
+    body[data-page="dashboard"] .metric-card.humidity::after {
+      background: var(--metric-dot-color, #2f7fde) !important;
+    }
+  </style>
+</head>
+<body data-page="dashboard">
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="app-logo" href="dashboard.html">IoT Tuan Le Quoc <span aria-hidden="true">⌂</span></a>
+      <nav class="nav-menu">
+        <a class="active" href="dashboard.html">Dashboard</a>
+        <a href="data.html">Data</a>
+        <a href="history.html">History</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+    </header>
+
+    <main class="page-main">
+      <div id="connectionStatus" class="connection-pill">Đang đồng bộ</div>
+
+      <section class="metric-grid" aria-label="Chỉ số cảm biến">
+        <article class="metric-card temp">
+          <small>Temperature</small>
+          <strong id="temperatureValue">--</strong>
+        </article>
+        <article class="metric-card light">
+          <small>Luminosity</small>
+          <strong id="luminosityValue">--</strong>
+        </article>
+        <article class="metric-card humidity">
+          <small>Humidity</small>
+          <strong id="humidityValue">--</strong>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel chart-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Home Environment Monitoring</h2>
+              <p id="lastUpdated" class="muted">Chưa có dữ liệu</p>
+            </div>
+            <div class="legend">
+              <span class="legend-temp">Temperature (°C)</span>
+              <span class="legend-light">Luminosity (Lux)</span>
+              <span class="legend-humidity">Humidity (%)</span>
+            </div>
+          </div>
+          <canvas id="sensorChart" width="900" height="360"></canvas>
+          <div id="chartTooltip" class="chart-tooltip" aria-hidden="true"></div>
+        </article>
+
+        <article class="panel controls-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Điều khiển thiết bị</h2>
+              <p class="muted">Lệnh được xác nhận qua MQTT response.</p>
+            </div>
+          </div>
+          <button id="allDevicesBtn" class="all-toggle-btn" type="button">ALL</button>
+          <div id="deviceList" class="device-list"></div>
+          <button id="logoutBtn" class="logout-outline" type="button">⇥ Đăng xuất</button>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/common.js?v=20261007-1"></script>
+  <script src="../js/dashboard.js?v=20261007-1"></script>
+</body>
+</html>

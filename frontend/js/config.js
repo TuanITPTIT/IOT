@@ -1,0 +1,7 @@
+window.APP_CONFIG = {
+  API_BASE_URL: "http://localhost:8080",
+  USE_MOCK_WHEN_API_FAILS: false,
+  PAGE_SIZE: 5,
+  SENSOR_REFRESH_MS: 2000,
+  DEVICE_TIMEOUT_MS: 5000
+};

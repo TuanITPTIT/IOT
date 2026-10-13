@@ -1,0 +1,338 @@
+body[data-page="dashboard"] {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body[data-page="dashboard"] .app-shell {
+  height: calc(100vh - 14px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+body[data-page="dashboard"] .page-main {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100%;
+  overflow: hidden;
+  padding-bottom: 24px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-bottom: 18px;
+}
+
+.metric-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 116px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 18px 22px;
+  border: 0;
+  border-radius: 10px;
+  color: var(--text);
+  background: #ffffff;
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(21, 35, 51, 0.04), 0 18px 42px rgba(21, 35, 51, 0.06);
+  isolation: isolate;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.metric-card::after {
+  content: "";
+  position: absolute;
+  right: 22px;
+  top: 20px;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #eef3f7;
+  z-index: -1;
+}
+
+.metric-card.temp::after {
+  background: var(--metric-dot-color, #f04d3a);
+}
+
+.metric-card.light::after {
+  background: var(--metric-dot-color, #d9a514);
+}
+
+.metric-card.humidity::after {
+  background: var(--metric-dot-color, #2f7fde);
+}
+
+.metric-card::before {
+  display: none;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 40px rgba(26, 51, 70, 0.16);
+}
+
+.metric-card.temp {
+  background: #ffffff;
+}
+
+.metric-card.temp small::before {
+  content: "℃";
+}
+
+.metric-card.light small::before {
+  content: "lx";
+}
+
+.metric-card.humidity small::before {
+  content: "%";
+}
+
+.metric-card.light {
+  background: #ffffff;
+}
+
+.metric-card.humidity {
+  background: #ffffff;
+}
+
+.metric-card small {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: #172033;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.metric-card small::before {
+  display: none;
+}
+
+.metric-card strong {
+  display: block;
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 700;
+  color: #172033;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.95fr) minmax(360px, 0.95fr);
+  gap: 26px;
+  min-height: 0;
+}
+
+.chart-panel {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.chart-panel canvas {
+  display: block;
+  width: calc(100% - 68px);
+  height: calc(100% - 116px);
+  min-height: 220px;
+  margin: 12px 34px 20px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff, #fbfdff);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+  color: #9aa7bb;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.legend span::before {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 4px;
+  margin-right: 8px;
+  vertical-align: middle;
+  border-radius: 999px;
+}
+
+.legend-temp::before {
+  background: repeating-linear-gradient(90deg, var(--temp) 0 5px, transparent 5px 9px);
+}
+
+.legend-humidity::before {
+  background: repeating-linear-gradient(90deg, var(--humidity) 0 5px, transparent 5px 9px);
+}
+
+.legend-light {
+  color: #1d293d;
+}
+
+.legend-light::before {
+  background: var(--light);
+}
+
+.controls-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding-bottom: 28px;
+  overflow: hidden;
+}
+
+.controls-panel .panel-head {
+  justify-content: center;
+  text-align: center;
+  padding-top: 22px;
+}
+
+.controls-panel .panel-head p {
+  display: none;
+}
+
+.all-toggle-btn {
+  width: calc(100% - 56px);
+  min-height: 44px;
+  margin: 18px 28px 0;
+  border: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  background: var(--primary);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.all-toggle-btn.is-on {
+  background: #253645;
+}
+
+.device-list {
+  display: grid;
+  gap: 12px;
+  padding: 16px 28px 20px;
+}
+
+.device-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: center;
+  min-height: 58px;
+  padding: 0 22px;
+  border: 1px solid rgba(230, 236, 244, 0.9);
+  border-radius: 12px;
+  background: linear-gradient(180deg, #fbfcff, #f8fafc);
+  box-shadow: 0 8px 18px rgba(24, 50, 72, 0.04);
+  transition: transform 0.16s ease, border-color 0.16s ease;
+}
+
+.device-item:hover {
+  transform: translateY(-1px);
+  border-color: #dce6f2;
+}
+
+.device-item h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.device-item p {
+  display: none;
+}
+
+.toggle-btn {
+  position: relative;
+  width: 56px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  background: #cbd6e3;
+  box-shadow: inset 0 1px 2px rgba(18, 30, 44, 0.08);
+}
+
+.toggle-btn::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(24, 32, 46, 0.18);
+}
+
+.toggle-btn.on {
+  background: var(--primary);
+}
+
+.all-toggle-btn.is-on + .device-list .toggle-btn.on {
+  background: #253645;
+}
+
+.toggle-btn.on::after {
+  transform: translateX(22px);
+}
+
+.toggle-btn.loading::after {
+  animation: pulse 0.7s infinite alternate;
+}
+
+.controls-panel .logout-outline {
+  width: calc(100% - 56px);
+  margin: auto 28px 0;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1120px) {
+  .dashboard-grid,
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+body[data-page="dashboard"] .metric-card,
+body[data-page="dashboard"] .metric-card.temp,
+body[data-page="dashboard"] .metric-card.light,
+body[data-page="dashboard"] .metric-card.humidity {
+  color: var(--text) !important;
+  background: #ffffff !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: 0 1px 2px rgba(21, 35, 51, 0.04), 0 18px 42px rgba(21, 35, 51, 0.06) !important;
+}
+
+body[data-page="dashboard"] .metric-card small,
+body[data-page="dashboard"] .metric-card strong {
+  color: #172033 !important;
+  text-shadow: none !important;
+}
+
+body[data-page="dashboard"] .metric-card.temp::after {
+  background: var(--metric-dot-color, #f04d3a) !important;
+}
+
+body[data-page="dashboard"] .metric-card.light::after {
+  background: var(--metric-dot-color, #d9a514) !important;
+}
+
+body[data-page="dashboard"] .metric-card.humidity::after {
+  background: var(--metric-dot-color, #2f7fde) !important;
+}

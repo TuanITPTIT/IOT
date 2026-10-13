@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Sensor System | Profile</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body data-page="profile">
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="app-logo" href="dashboard.html">IoT Tuan Le Quoc <span aria-hidden="true">⌂</span></a>
+      <nav class="nav-menu">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="data.html">Data</a>
+        <a href="history.html">History</a>
+        <a class="active" href="profile.html">Profile</a>
+      </nav>
+      <button id="logoutBtn" class="logout-outline sidebar-logout" type="button">Đăng xuất</button>
+    </header>
+
+    <main class="page-main">
+      <section class="profile-layout">
+        <article class="profile-card">
+          <img class="avatar" id="avatarInitials" src="../assets/images/anhtuan.jpg" alt="Ảnh đại diện Lê Quốc Tuấn">
+          <h2 id="fullName">Lê Quốc Tuấn</h2>
+          <p id="role" class="muted">Student, Software Engineering</p>
+          <dl>
+            <div><dt>Mã sinh viên</dt><dd id="studentId">B23DCCN885</dd></div>
+            <div><dt>Lớp</dt><dd id="className">D23CNPM02</dd></div>
+            <div><dt>Trường</dt><dd id="institution">PTIT</dd></div>
+          </dl>
+        </article>
+
+        <div class="profile-stack">
+          <article class="panel">
+            <h2>About Me</h2>
+            <p id="aboutMe">Đang tải thông tin hồ sơ...</p>
+          </article>
+
+          <article class="panel">
+            <h2>Contact Information</h2>
+            <div class="contact-grid">
+              <div><span>Phone</span><strong id="phone">--</strong></div>
+              <div><span>Email</span><strong id="email">--</strong></div>
+              <div><span>Address</span><strong id="address">--</strong></div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h2>Academic Resources</h2>
+            <div id="resources" class="resource-grid"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/profile.js"></script>
+</body>
+</html>

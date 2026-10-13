@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="IoT network dashboard background">
+  <rect width="1200" height="800" fill="#13212f"/>
+  <g fill="none" stroke="#6bd4d6" stroke-width="2" opacity=".35">
+    <path d="M150 230h220l120 110h240l130-150h190"/>
+    <path d="M180 560h180l100-145h270l120 95h170"/>
+    <path d="M310 120l140 160m280 80 170-210M465 525l120 140"/>
+  </g>
+  <g fill="#6bd4d6">
+    <circle cx="150" cy="230" r="12"/>
+    <circle cx="370" cy="230" r="10"/>
+    <circle cx="490" cy="340" r="13"/>
+    <circle cx="730" cy="340" r="10"/>
+    <circle cx="860" cy="190" r="14"/>
+    <circle cx="1050" cy="190" r="10"/>
+    <circle cx="180" cy="560" r="12"/>
+    <circle cx="360" cy="560" r="10"/>
+    <circle cx="460" cy="415" r="13"/>
+    <circle cx="730" cy="415" r="10"/>
+    <circle cx="850" cy="510" r="14"/>
+    <circle cx="1020" cy="510" r="10"/>
+  </g>
+  <g fill="#f4c34a" opacity=".82">
+    <rect x="225" y="292" width="120" height="76" rx="8"/>
+    <rect x="795" y="588" width="150" height="82" rx="8"/>
+  </g>
+  <g fill="#f47a6b" opacity=".78">
+    <rect x="600" y="126" width="130" height="84" rx="8"/>
+  </g>
+</svg>

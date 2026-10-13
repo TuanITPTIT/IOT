@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Sensor System | Login</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body class="login-page">
+  <main class="login-shell">
+    <section class="login-panel">
+      <h1>Đăng nhập</h1>
+      <p class="muted">Chào mừng bạn trở lại! Vui lòng nhập thông tin.</p>
+
+      <form id="loginForm" class="login-form">
+        <label>
+          <span>Địa chỉ Email</span>
+          <input id="username" name="username" type="text" autocomplete="username" placeholder="example@email.com" value="admin" required>
+        </label>
+        <label>
+          <span>Mật khẩu</span>
+          <input id="password" name="password" type="password" autocomplete="current-password" value="password123" required>
+        </label>
+        <div class="login-options">
+          <label class="remember-row"><input type="checkbox"> <span>Ghi nhớ tôi</span></label>
+          <a href="#">Quên mật khẩu?</a>
+        </div>
+        <button class="primary-btn" type="submit">Đăng nhập</button>
+        <p class="signup-text">Chưa có tài khoản? <a href="#">Đăng ký ngay</a></p>
+        <p id="loginMessage" class="form-message" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>
