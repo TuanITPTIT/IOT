@@ -1,10 +1,13 @@
 INSERT INTO users (id, username, password, full_name, role, created_at, github_link, figma_link, apidocs_link, baocao_link)
 VALUES (1, 'admin', '$2a$10$MyXJygPoB071RZz45OrYLu6hFRiWRvNewnyt8fQrcpOo5ohc6ddZi', 'Lê Quốc Tuấn', 'ROLE_ADMIN', CURRENT_TIMESTAMP,
-        'https://github.com/tuanthanhmc123/iot-smart-home',
-        'https://figma.com/@tuanthanhmc/smart-home-ui',
+        -- 'https://github.com/tuanthanhmc123/iot-smart-home',
+        'https://github.com/TuanITPTIT/IOT',
+        -- 'https://figma.com/@tuanthanhmc/smart-home-ui',
+        'https://www.figma.com/design/BzUFwsBoDTSe6gti7vPIMc/Untitled?timeline=keyframe&node-id=0-1&t=zQYwVXkYuxI4t75v-0',
         -- 'https://documenter.getpostman.com/view/iot-apis',
         'https://tuanthanhmc123-1193583.postman.co/workspace/69c0412c-0f5e-4b4e-8a36-bfb9345cb800/collection/58929364-8fb2b22d-0208-4dff-abb4-da909e314de3',
-        'https://github.com/tuanthanhmc123/iot-smart-home/blob/main/docs/Bao_Cao_Do_An_IoT_LeQuocTuan.pdf')
+        -- 'https://github.com/tuanthanhmc123/iot-smart-home/blob/main/docs/Bao_Cao_Do_An_IoT_LeQuocTuan.pdf')
+        'https://drive.google.com/file/d/1cLzRtUK7PUeeZL6SowHcCv_OYVACyseG/view?usp=sharing')
 ON DUPLICATE KEY UPDATE
     username = VALUES(username),
     password = VALUES(password),
