@@ -175,20 +175,19 @@ public final class DataSensorSpecifications {
     private static void addDateTimeTerms(List<String> terms, String day, String month, String year, String time) {
         String vnDate = day + "/" + month + "/" + year;
         String isoDate = year + "-" + month + "-" + day;
+        if (StringUtils.hasText(time)) {
+            String normalizedTime = normalizeTime(time);
+            terms.add(isoDate + " " + normalizedTime);
+            terms.add(isoDate + "T" + normalizedTime);
+            terms.add(vnDate + " " + normalizedTime);
+            terms.add(normalizedTime + " " + vnDate);
+            return;
+        }
+
         terms.add(vnDate);
         terms.add(day + "-" + month + "-" + year);
         terms.add(isoDate);
         terms.add(year + "/" + month + "/" + day);
-
-        if (!StringUtils.hasText(time)) {
-            return;
-        }
-
-        String normalizedTime = normalizeTime(time);
-        terms.add(isoDate + " " + normalizedTime);
-        terms.add(isoDate + "T" + normalizedTime);
-        terms.add(vnDate + " " + normalizedTime);
-        terms.add(normalizedTime + " " + vnDate);
     }
 
     private static String normalizeTime(String time) {

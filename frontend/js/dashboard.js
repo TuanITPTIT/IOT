@@ -10,6 +10,7 @@
   let deviceState = window.IOT.devices.map((device) => ({ ...device }));
   let chartArea = null;
   let hoveredPointIndex = null;
+  const DEVICE_LOADING_DELAY_MS = 2000;
 
   function scaledColor(value, min, max, rgb, invert = false) {
     const rawRatio = Math.max(0, Math.min(1, (value - min) / Math.max(max - min, 1)));
@@ -245,8 +246,10 @@
     });
     if (allDevicesBtn) {
       const allOn = deviceState.length > 0 && deviceState.every((device) => device.status === "ON");
+      const anyLoading = deviceState.some((device) => device.loading);
       allDevicesBtn.classList.toggle("is-on", allOn);
       allDevicesBtn.textContent = allOn ? "ALL OFF" : "ALL ON";
+      allDevicesBtn.disabled = anyLoading;
     }
   }
 
@@ -272,8 +275,11 @@
         status: action,
         timestamp: new Date().toISOString()
       }));
-      const result = await Promise.race([request, timeout]);
-      device.status = result.status || action;
+      const [result] = await Promise.all([
+        Promise.race([request, timeout]),
+        new Promise((resolve) => window.setTimeout(resolve, DEVICE_LOADING_DELAY_MS))
+      ]);
+      device.status = result.status && result.status !== "Loading" ? result.status : action;
     } catch (error) {
       device.status = previous;
       connectionStatus.textContent = "Thiết bị không phản hồi";
@@ -287,11 +293,10 @@
 
   async function controlAllDevices() {
     const turnOn = deviceState.some((device) => device.status !== "ON");
-    for (const device of deviceState) {
-      if ((turnOn && device.status !== "ON") || (!turnOn && device.status === "ON")) {
-        await controlDevice(device.id);
-      }
-    }
+    const targetDevices = deviceState.filter((device) => (
+      (turnOn && device.status !== "ON") || (!turnOn && device.status === "ON")
+    ));
+    await Promise.all(targetDevices.map((device) => controlDevice(device.id)));
   }
 
   async function loadInitial() {

@@ -87,16 +87,15 @@
   }
 
   function formatTime(value) {
-    const date = value ? new Date(value) : new Date();
+    const normalizedValue = typeof value === "string" ? value.replace(" ", "T").replaceAll("/", "-") : value;
+    const date = normalizedValue ? new Date(normalizedValue) : new Date();
     if (Number.isNaN(date.getTime())) return value;
-    return date.toLocaleString("vi-VN", {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    });
+    const pad = (number) => String(number).padStart(2, "0");
+    return [
+      date.getFullYear(),
+      pad(date.getMonth() + 1),
+      pad(date.getDate())
+    ].join("/") + ` ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
   }
 
   function statusBadge(status) {
@@ -112,6 +111,59 @@
     });
     Object.entries(extras).forEach(([key, value]) => params.set(key, value));
     return params;
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function timeCopyControl(timestamp) {
+    const time = formatTime(timestamp);
+    return `
+      <span class="time-copy">
+        <span>${escapeHtml(time)}</span>
+        <button class="copy-time-btn" type="button" data-copy-value="${escapeHtml(time)}" title="Copy thời gian">Copy</button>
+      </span>
+    `;
+  }
+
+  async function copyText(value) {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+      return;
+    }
+    const input = document.createElement("textarea");
+    input.value = value;
+    input.setAttribute("readonly", "");
+    input.style.position = "fixed";
+    input.style.left = "-9999px";
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand("copy");
+    input.remove();
+  }
+
+  function bindCopyTime(root = document) {
+    root.querySelectorAll(".copy-time-btn").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const original = button.textContent;
+        try {
+          await copyText(button.dataset.copyValue || "");
+          button.textContent = "Copied";
+        } catch (error) {
+          button.textContent = "Lỗi";
+        } finally {
+          window.setTimeout(() => {
+            button.textContent = original;
+          }, 900);
+        }
+      });
+    });
   }
 
   function normalizePageData(pageData, fallbackPage = 0, fallbackSize = config.PAGE_SIZE) {
@@ -363,6 +415,9 @@
     formatTime,
     statusBadge,
     queryFromForm,
+    escapeHtml,
+    timeCopyControl,
+    bindCopyTime,
     normalizePageData,
     pageSummary,
     renderPagination,

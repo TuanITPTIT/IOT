@@ -126,11 +126,12 @@
             <td>${sensorCode(type)}</td>
             <td>${type}</td>
             <td>${value}</td>
-            <td>${window.IOT.formatTime(item.timestamp)}</td>
+            <td>${window.IOT.timeCopyControl(item.timestamp)}</td>
           </tr>
         `);
       });
     }
+    window.IOT.bindCopyTime(rows);
     summary.textContent = `${normalizedPage.totalElements.toLocaleString("vi-VN")} records found`;
     window.IOT.renderPagination(pagination, normalizedPage, (page) => {
       currentPage = page;

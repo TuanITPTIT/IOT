@@ -12,8 +12,14 @@ import org.springframework.util.StringUtils;
 @Component
 public class TimeParser {
     private static final List<DateTimeFormatter> DATE_TIME_FORMATS = List.of(
+        DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"),
         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"),
         DateTimeFormatter.ISO_LOCAL_DATE_TIME
+    );
+
+    private static final List<DateTimeFormatter> DATE_FORMATS = List.of(
+        DateTimeFormatter.ofPattern("yyyy/MM/dd"),
+        DateTimeFormatter.ISO_LOCAL_DATE
     );
 
     public LocalDateTime parseStart(String value) {
@@ -35,11 +41,13 @@ public class TimeParser {
             } catch (DateTimeParseException ignored) {
             }
         }
-        try {
-            LocalDate date = LocalDate.parse(text, DateTimeFormatter.ISO_LOCAL_DATE);
-            return LocalDateTime.of(date, startOfDay ? LocalTime.MIN : LocalTime.MAX.withNano(0));
-        } catch (DateTimeParseException ex) {
-            throw new IllegalArgumentException("Invalid time format. Use yyyy-MM-dd HH:mm:ss");
+        for (DateTimeFormatter formatter : DATE_FORMATS) {
+            try {
+                LocalDate date = LocalDate.parse(text, formatter);
+                return LocalDateTime.of(date, startOfDay ? LocalTime.MIN : LocalTime.MAX.withNano(0));
+            } catch (DateTimeParseException ignored) {
+            }
         }
+        throw new IllegalArgumentException("Invalid time format. Use yyyy/MM/dd HH:mm:ss");
     }
 }
